@@ -1,37 +1,26 @@
-# Compiled source #
-###################
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
 
-# Packages #
-############
-# it's better to unpack these files and commit the raw source
-# git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
+# Streamlit
+.streamlit/
 
-# Logs and databases #
-######################
-*.log
-*.sql
-*.sqlite
+# Media/Temp
+temp_audio.mp3
+extracted_audio.mp3
+frames/
+*.mp4
+*.mkv
+*.avi
 
-# OS generated files #
-######################
+# OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+.cursor/

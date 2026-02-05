@@ -1,75 +1,234 @@
-<header>
+# 🎬 AI Video Summarization Platform
 
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+A full-stack AI-based video summarization platform that allows users to upload videos and automatically generates text summaries, timestamps, keywords, and visual highlights using Artificial Intelligence.
 
-# Introduction to GitHub
-
-_Get started using GitHub in less than an hour._
-
-</header>
-
-<!--
-  <<< Author notes: Step 1 >>>
-  Choose 3-5 steps for your course.
-  The first step is always the hardest, so pick something easy!
-  Link to docs.github.com for further explanations.
-  Encourage users to open new tabs for steps!
--->
-
-## Step 1: Create a branch
-
-_Welcome to "Introduction to GitHub"! :wave:_
-
-**What is GitHub?**: GitHub is a collaboration platform that uses _[Git](https://docs.github.com/get-started/quickstart/github-glossary#git)_ for versioning. GitHub is a popular place to share and contribute to [open-source](https://docs.github.com/get-started/quickstart/github-glossary#open-source) software.
-<br>:tv: [Video: What is GitHub?](https://www.youtube.com/watch?v=pBy1zgt0XPc)
-
-**What is a repository?**: A _[repository](https://docs.github.com/get-started/quickstart/github-glossary#repository)_ is a project containing files and folders. A repository tracks versions of files and folders. For more information, see "[About repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories)" from GitHub Docs.
-
-**What is a branch?**: A _[branch](https://docs.github.com/en/get-started/quickstart/github-glossary#branch)_ is a parallel version of your repository. By default, your repository has one branch named `main` and it is considered to be the definitive branch. Creating additional branches allows you to copy the `main` branch of your repository and safely make any changes without disrupting the main project. Many people use branches to work on specific features without affecting any other parts of the project.
-
-Branches allow you to separate your work from the `main` branch. In other words, everyone's work is safe while you contribute. For more information, see "[About branches](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)".
-
-**What is a profile README?**: A _[profile README](https://docs.github.com/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)_ is essentially an "About me" section on your GitHub profile where you can share information about yourself with the community on GitHub.com. GitHub shows your profile README at the top of your profile page. For more information, see "[Managing your profile README](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme)".
-
-![profile-readme-example](/images/profile-readme-example.png)
-
-### :keyboard: Activity: Your first branch
-
-1. Open a new browser tab and navigate to your newly made repository. Then, work on the steps in your second tab while you read the instructions in this tab.
-2. Navigate to the **< > Code** tab in the header menu of your repository.
-
-   ![code-tab](/images/code-tab.png)
-
-3. Click on the **main** branch drop-down.
-
-   ![main-branch-dropdown](/images/main-branch-dropdown.png)
-
-4. In the field, name your branch `my-first-branch`. In this case, the name must be `my-first-branch` to trigger the course workflow.
-5. Click **Create branch: my-first-branch** to create your branch.
-
-   ![create-branch-button](/images/create-branch-button.png)
-
-   The branch will automatically switch to the one you have just created.
-   The **main** branch drop-down bar will reflect your new branch and display the new branch name.
-
-6. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
-
-<footer>
-
-<!--
-  <<< Author notes: Footer >>>
-  Add a link to get support, GitHub status page, code of conduct, license link.
--->
+![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ---
 
-Get help: [Post in our discussion board](https://github.com/orgs/skills/discussions/categories/introduction-to-github) &bull; [Review the GitHub status page](https://www.githubstatus.com/)
+## 📋 Table of Contents
 
-&copy; 2024 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+- [Features](#-features)
+- [Workflow](#-workflow)
+- [Tech Stack](#-tech-stack)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Project Structure](#-project-structure)
+- [Why NLP, Audio Processing & AI?](#-why-nlp-audio-processing--ai)
+- [Future Scope](#-future-scope)
+- [Real-World Use Cases](#-real-world-use-cases)
+- [Troubleshooting](#-troubleshooting)
 
-</footer>
+---
+
+## ✨ Features
+
+### Core Features
+- **Video Upload** – Upload MP4, AVI, MKV, MOV, WEBM, WMV, FLV, M4V, MPG, MPEG, 3GP, OGV, MTS, and more (up to 5 GB)
+- **Video Preview** – Preview uploaded videos before processing
+- **Audio Extraction** – Extract audio from video using MoviePy
+- **Speech-to-Text** – Convert audio to text with Whisper (OpenAI)
+- **Timestamped Transcription** – Each spoken segment includes start/end timestamps
+- **AI Summarization** – OpenAI API generates:
+  - Concise summary (2-4 sentences)
+  - Bullet-point key highlights (5-8 points)
+  - Important keywords (5-10 terms)
+  - Major topics discussed
+- **Timestamped Highlights** – Clickable timestamps to jump to important moments
+- **Visual Summary** – Key frames captured at highlight timestamps
+- **PDF Export** – Download summary as PDF
+
+### Optional Enhancements
+- **YouTube Support** – Paste YouTube URLs to summarize (requires `yt-dlp`)
+- **Dark/Light Mode** – Toggle in sidebar
+- **Multi-language** – Whisper supports 99+ languages
+
+---
+
+## 🔄 Workflow
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│  1. Video       │────▶│  2. Audio       │────▶│  3. Whisper     │
+│     Upload      │     │     Extraction  │     │     Speech-to-  │
+│  (MP4/AVI/MKV)  │     │  (MoviePy)      │     │     Text        │
+└─────────────────┘     └─────────────────┘     └────────┬────────┘
+                                                         │
+                                                         ▼
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│  6. Display     │◀────│  5. Key Frame   │◀────│  4. OpenAI      │
+│     Results     │     │     Capture     │     │     Summarize   │
+│  (Streamlit UI) │     │  (Visual Thumbs)│     │  (GPT)          │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+```
+
+**Step-by-Step Process:**
+
+1. **Video Upload** – User uploads a video file or pastes a YouTube URL
+2. **Audio Extraction** – MoviePy extracts the audio track as MP3
+3. **Speech-to-Text** – Whisper transcribes the audio with word-level timestamps
+4. **AI Summarization** – OpenAI GPT analyzes the transcription and produces:
+   - Summary, key points, keywords, topics, and important timestamps
+5. **Key Frame Capture** – Frames are extracted at highlighted timestamps
+6. **Display** – Streamlit renders all outputs in a clean, interactive UI
+
+---
+
+## 🛠 Tech Stack
+
+| Component | Technology |
+|-----------|------------|
+| **Web UI** | Streamlit |
+| **Video/Audio** | MoviePy, FFmpeg |
+| **Speech-to-Text** | OpenAI Whisper |
+| **AI Summarization** | OpenAI API (GPT-4o-mini, GPT-4o) |
+| **PDF Export** | ReportLab |
+| **YouTube** | yt-dlp (optional) |
+
+---
+
+## 📦 Installation
+
+### Prerequisites
+- **Python 3.9+**
+- **FFmpeg** – Required for video/audio processing  
+  - Windows: `winget install FFmpeg` or download from [ffmpeg.org](https://ffmpeg.org)
+  - macOS: `brew install ffmpeg`
+  - Linux: `sudo apt install ffmpeg`
+
+### Setup
+
+1. **Clone or navigate to the project:**
+   ```bash
+   cd "New folder"
+   ```
+
+2. **Create a virtual environment (recommended):**
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate   # Windows
+   # source venv/bin/activate  # macOS/Linux
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Set your OpenAI API key:**
+   - Copy `.env.example` to `.env`
+   - Add your key: `OPENAI_API_KEY=sk-your-key-here`
+   - Or set environment variable: `set OPENAI_API_KEY=sk-...` (Windows)
+
+---
+
+## 🚀 Usage
+
+### Run on localhost
+
+```bash
+streamlit run app.py
+```
+
+The app will open at **http://localhost:8501**
+
+### Steps
+
+1. **Upload** a video (MP4, AVI, MKV, MOV, WEBM, WMV, FLV, etc. – up to 5 GB) or paste a YouTube URL
+2. Optionally adjust **Whisper model** (base recommended) and **OpenAI model**
+3. Click **Generate Summary**
+4. Wait for processing (audio extraction → transcription → summarization)
+5. View results: summary, key points, keywords, timestamps, visual highlights
+6. Download summary as PDF if needed
+
+---
+
+## 📂 Project Structure
+
+```
+├── app.py              # Streamlit application (main entry point)
+├── video_processor.py  # Audio extraction & frame capture (MoviePy)
+├── transcriber.py      # Whisper speech-to-text
+├── summarizer.py       # OpenAI summarization logic
+├── requirements.txt    # Python dependencies
+├── .env.example        # Example environment variables
+└── README.md           # Documentation
+```
+
+### Module Descriptions
+
+| File | Purpose |
+|------|---------|
+| `app.py` | Streamlit UI, file upload, progress display, results rendering |
+| `video_processor.py` | Extract audio from video, capture frames at timestamps |
+| `transcriber.py` | Load Whisper model, transcribe audio with timestamps |
+| `summarizer.py` | Call OpenAI API, parse JSON response (summary, keywords, etc.) |
+
+---
+
+## 🧠 Why NLP, Audio Processing & AI?
+
+### Natural Language Processing (NLP)
+- **Text understanding** – GPT analyzes the transcription to identify main ideas, themes, and structure
+- **Keyword extraction** – Identifies important terms and concepts
+- **Summarization** – Condenses long transcripts into readable summaries
+
+### Audio Processing
+- **Audio extraction** – Videos are primarily visual; audio contains the spoken content
+- **Format conversion** – Whisper expects audio files; MoviePy bridges video → audio
+
+### Artificial Intelligence
+- **Whisper** – State-of-the-art speech recognition, handles accents and noise
+- **OpenAI GPT** – Understands context, generates coherent summaries and highlights
+- **Automation** – Replaces manual transcription and summarization
+
+---
+
+## 🔮 Future Scope
+
+- **Batch processing** – Process multiple videos in a queue
+- **Speaker diarization** – Identify who said what
+- **Sentiment analysis** – Detect tone (positive, neutral, negative)
+- **Multi-language UI** – Localize the interface
+- **Cloud deployment** – Deploy on Streamlit Cloud, AWS, or GCP
+- **Database storage** – Save summaries for later retrieval
+- **API mode** – REST API for programmatic access
+
+---
+
+## 🌍 Real-World Use Cases
+
+| Use Case | Description |
+|----------|-------------|
+| **Education** | Summarize lectures for students; create study guides |
+| **Meetings** | Turn meeting recordings into actionable notes |
+| **Content Creators** | Generate video descriptions and timestamps for YouTube |
+| **Legal/Medical** | Transcribe depositions, consultations; extract key points |
+| **Research** | Quickly scan conference talks and seminars |
+| **Accessibility** | Provide text alternatives for video content |
+| **Compliance** | Document training videos with searchable transcripts |
+
+---
+
+## ⚠️ Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| **FFmpeg not found** | Install FFmpeg and add to PATH |
+| **OPENAI_API_KEY error** | Set key in `.env` or environment variables |
+| **Out of memory** | Use smaller Whisper model (tiny/base); process shorter videos |
+| **Slow transcription** | Use `tiny` or `base` Whisper model; ensure GPU if available |
+| **YouTube download fails** | Install/update yt-dlp: `pip install -U yt-dlp` |
+| **Large video timeout** | Increase Streamlit timeout or process in chunks |
+
+---
+
+## 📄 License
+
+MIT License – feel free to use and modify for your projects.
+
+---
+
+**Built with ❤️ using Python, Whisper, OpenAI, and Streamlit**

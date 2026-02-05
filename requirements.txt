@@ -1,0 +1,30 @@
+# Video Summarization Platform - Dependencies
+
+# Web UI
+streamlit>=1.28.0
+
+# Video/Audio Processing
+moviepy>=1.0.3
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.9
+
+# Speech-to-Text
+openai-whisper>=20231117
+
+# AI Summarization
+openai>=1.6.0
+
+# Utilities
+python-dotenv>=1.0.0
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# PDF Export (Optional)
+reportlab>=4.0.0
+
+# Word Document Export (Optional)
+python-docx
+imageio-ffmpeg>=1.0.0
+
+# YouTube Support (Optional)
+yt-dlp>=2023.11.0
